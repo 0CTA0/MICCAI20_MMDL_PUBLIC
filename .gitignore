@@ -1,0 +1,6 @@
+*.MOV
+*.jpg
+*.wav
+Model/*
+*.png
+*.txt
