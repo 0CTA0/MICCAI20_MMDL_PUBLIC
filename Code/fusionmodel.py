@@ -110,70 +110,49 @@ class ResNet_AT(nn.Module):
             f2 = x[:,3:6,:,:]
             f3 = x[:,6:9,:,:]
             f4 = x[:,9:12,:,:]
-            #print(f1.shape)
-            #print(f2.shape)
-            #print(f.cpu().detach().numpy().shape)
             f1 = self.conv0(f1)
             f2 = self.conv0(f2)
             f3 = self.conv0(f3)
             f4 = self.conv0(f4)
-            #print(f1.shape)
-            #print(f2.shape)
-            #vm = torch.cat([f[1:,:,:,:], f[:1,:,:,:]], dim=0)
-            #vm = vm - f
-            #vm[0,:,:,:] = torch.zeros([3,224,224])
-            #f = torch.cat([f, vm], dim=0)
             f1 = f1-f2
             f2 = f2-f3
             f3 = f3-f4
             f1 = self.conv1(f1)
-            #print(f.cpu().detach().numpy().shape)
-            #print(f.cpu().detach().numpy().shape)
             f1 = self.bn1(f1)
             f1 = self.relu(f1)
             f1 = self.maxpool(f1)
-            #print(f.cpu().detach().numpy().shape)
             f1 = self.layer1(f1)
             f1 = self.layer2(f1)
             f1 = self.layer3(f1)
             f1 = self.layer4(f1)
             f1 = self.avgpool(f1)
-            #print(f.cpu().detach().numpy().shape)
             f1 = f1.squeeze(3)  # f[16, 512, 4, 1] ---> f[16, 512,4]
             f1 = f1.view(-1,512*6)
             output1 = self.dropout2(f1)
             prec_feature = self.sigmoid(output1)
             pred_score1 = self.pred_fc2(output1)
             f2 = self.conv1(f2)
-            #print(f.cpu().detach().numpy().shape)
-            #print(f.cpu().detach().numpy().shape)
             f2 = self.bn1(f2)
             f2 = self.relu(f2)
             f2 = self.maxpool(f2)
-            #print(f.cpu().detach().numpy().shape)
             f2 = self.layer1(f2)
             f2 = self.layer2(f2)
             f2 = self.layer3(f2)
             f2 = self.layer4(f2)
             f2 = self.avgpool(f2)
-            #print(f.cpu().detach().numpy().shape)
             f2 = f2.squeeze(3)  # f[16, 512, 4, 1] ---> f[16, 512,4]
             f2 = f2.view(-1,512*6)
             output2 = self.dropout2(f2)
             pred_score2 = self.pred_fc2(output2)
             f3 = self.conv1(f3)
-            #print(f.cpu().detach().numpy().shape)
-            #print(f.cpu().detach().numpy().shape)
             f3 = self.bn1(f3)
             f3 = self.relu(f3)
             f3 = self.maxpool(f3)
-            #print(f.cpu().detach().numpy().shape)
             f3 = self.layer1(f3)
             f3 = self.layer2(f3)
             f3 = self.layer3(f3)
             f3 = self.layer4(f3)
             f3 = self.avgpool(f3)
-            #print(f.cpu().detach().numpy().shape)
             f3 = f3.squeeze(3)  # f[16, 512, 4, 1] ---> f[16, 512,4]
             f3 = f3.view(-1,512*6)
             output3 = self.dropout2(f3)
@@ -183,31 +162,18 @@ class ResNet_AT(nn.Module):
         if phrase == 'eval':
             f1 = x[:,0:3,:,:]
             f2 = x[:,3:6,:,:]
-            #print(f1.shape)
-            #print(f2.shape)
-            #print(f.cpu().detach().numpy().shape)
             f1 = self.conv0(f1)
             f2 = self.conv0(f2)
-            #print(f1.shape)
-            #print(f2.shape)
-            #vm = torch.cat([f[1:,:,:,:], f[:1,:,:,:]], dim=0)
-            #vm = vm - f
-            #vm[0,:,:,:] = torch.zeros([3,224,224])
-            #f = torch.cat([f, vm], dim=0)
             f1 = f1-f2
             f1 = self.conv1(f1)
-            #print(f.cpu().detach().numpy().shape)
-            #print(f.cpu().detach().numpy().shape)
             f1 = self.bn1(f1)
             f1 = self.relu(f1)
             f1 = self.maxpool(f1)
-            #print(f.cpu().detach().numpy().shape)
             f1 = self.layer1(f1)
             f1 = self.layer2(f1)
             f1 = self.layer3(f1)
             f1 = self.layer4(f1)
             f1 = self.avgpool(f1)
-            #print(f.cpu().detach().numpy().shape)
             f1 = f1.squeeze(3)  # f[16, 512, 4, 1] ---> f[16, 512,4]
             f1 = f1.view(-1,512*6)
             output1 = self.dropout2(f1)
@@ -252,11 +218,7 @@ class LSTMClassifier(nn.Module):
         packed_input = pack_padded_sequence(embeds, lengths,batch_first=True)
         outputs, (ht, ct) = self.lstm(packed_input, self.hidden)
         # ht is the last hidden state of the sequences
-        # ht = (1 x batch_size x hidden_dim)
-        # ht[-1] = (batch_size x hidden_dim)
         output = self.dropout_layer(ht[-1])
-        # output = self.hidden2out(output)
-        # output = self.softmax(output)
 
         return output
 
@@ -264,43 +226,17 @@ class DummyLayer(nn.Module):
     def forward(self, x):
         return x
 
-def resnet18_AT(pretrained=False, **kwargs):
-    # Constructs base a ResNet-18 model.
+def ResNetClassifier(pretrained=False, **kwargs):
+    # Constructs base a ResNet-34 model.
     model = ResNet_AT(BasicBlock, [3, 4, 6, 3], **kwargs)
-    #model.load_state_dict(model_zoo.load_url('https://download.pytorch.org/models/resnet18-5c106cde.pth'))
     return model
 
-class TwoLayerNet(torch.nn.Module):
-    def __init__(self, D_in, D_out):
-        """
-        In the constructor we instantiate two nn.Linear modules and assign them as
-        member variables.
-        """
-        super(TwoLayerNet, self).__init__()
-        self.frameconv1 = torch.nn.Linear(D_in, D_out)
-        self.frameconv2 = torch.nn.Sigmoid()
-        '''
-        for m in self.modules():
-            if isinstance(m, nn.Linear):
-                torch.nn.init.xavier_uniform_(m.weight)
-                torch.nn.init.constant_(m.bias, 0)
-        '''
-
-    def forward(self, x):
-        """
-        In the forward function we accept a Tensor of input data and we must return
-        a Tensor of output data. We can use Modules defined in the constructor as
-        well as arbitrary operators on Tensors.
-        """
-        f = self.frameconv1(x)
-        pred = self.frameconv2(f)
-        return pred
 
 class fusion(nn.Module):
     def __init__(self, args,pretrained=False, **kwargs):
         super(fusion, self).__init__()
-        self.lstm = LSTMClassifier(args)
-        self.resnet = resnet18_AT()
+        self.lstm = ResNetClassifier(args)
+        self.resnet = resnet()
         # self.resnet.pred_fc2 = DummyLayer()
         self.outlayer = nn.Linear(
             in_features=RESNET_FEATURE+self.lstm.hidden_dim, out_features=2)

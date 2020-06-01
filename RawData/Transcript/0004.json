@@ -1,0 +1,319 @@
+{
+  "results": [
+    {
+      "alternatives": [
+        {
+          "transcript": "set an alarm for dementia",
+          "confidence": 0.6849779486656189,
+          "words": [
+            {
+              "startTime": "0.600s",
+              "endTime": "1.200s",
+              "word": "set"
+            },
+            {
+              "startTime": "1.200s",
+              "endTime": "1.400s",
+              "word": "an"
+            },
+            {
+              "startTime": "1.400s",
+              "endTime": "1.600s",
+              "word": "alarm"
+            },
+            {
+              "startTime": "1.600s",
+              "endTime": "1.700s",
+              "word": "for"
+            },
+            {
+              "startTime": "1.700s",
+              "endTime": "3.500s",
+              "word": "dementia"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " la llamada la banda de la nina De La Plata skillet obando",
+          "confidence": 0.7904555797576904,
+          "words": [
+            {
+              "startTime": "8.100s",
+              "endTime": "8.500s",
+              "word": "la"
+            },
+            {
+              "startTime": "8.500s",
+              "endTime": "9.700s",
+              "word": "llamada"
+            },
+            {
+              "startTime": "9.700s",
+              "endTime": "10.300s",
+              "word": "la"
+            },
+            {
+              "startTime": "10.300s",
+              "endTime": "10.700s",
+              "word": "banda"
+            },
+            {
+              "startTime": "10.700s",
+              "endTime": "10.700s",
+              "word": "de"
+            },
+            {
+              "startTime": "10.700s",
+              "endTime": "10.800s",
+              "word": "la"
+            },
+            {
+              "startTime": "10.800s",
+              "endTime": "21.400s",
+              "word": "nina"
+            },
+            {
+              "startTime": "21.400s",
+              "endTime": "21.400s",
+              "word": "De"
+            },
+            {
+              "startTime": "21.400s",
+              "endTime": "21.600s",
+              "word": "La"
+            },
+            {
+              "startTime": "21.600s",
+              "endTime": "22.400s",
+              "word": "Plata"
+            },
+            {
+              "startTime": "22.400s",
+              "endTime": "23s",
+              "word": "skillet"
+            },
+            {
+              "startTime": "23s",
+              "endTime": "23.500s",
+              "word": "obando"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " one more time",
+          "confidence": 0.9308568239212036,
+          "words": [
+            {
+              "startTime": "28.200s",
+              "endTime": "28.600s",
+              "word": "one"
+            },
+            {
+              "startTime": "28.600s",
+              "endTime": "28.800s",
+              "word": "more"
+            },
+            {
+              "startTime": "28.800s",
+              "endTime": "29.100s",
+              "word": "time"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " now you don't got none.",
+          "confidence": 0.5901415944099426,
+          "words": [
+            {
+              "startTime": "31.400s",
+              "endTime": "32.400s",
+              "word": "now"
+            },
+            {
+              "startTime": "32.400s",
+              "endTime": "32.600s",
+              "word": "you"
+            },
+            {
+              "startTime": "32.600s",
+              "endTime": "32.700s",
+              "word": "don't"
+            },
+            {
+              "startTime": "32.700s",
+              "endTime": "32.800s",
+              "word": "got"
+            },
+            {
+              "startTime": "32.800s",
+              "endTime": "33.100s",
+              "word": "none."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " all the way in",
+          "confidence": 0.8691434860229492,
+          "words": [
+            {
+              "startTime": "43.300s",
+              "endTime": "43.700s",
+              "word": "all"
+            },
+            {
+              "startTime": "43.700s",
+              "endTime": "43.900s",
+              "word": "the"
+            },
+            {
+              "startTime": "43.900s",
+              "endTime": "44s",
+              "word": "way"
+            },
+            {
+              "startTime": "44s",
+              "endTime": "44.200s",
+              "word": "in"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " total vision",
+          "confidence": 0.9120323061943054,
+          "words": [
+            {
+              "startTime": "45.400s",
+              "endTime": "45.900s",
+              "word": "total"
+            },
+            {
+              "startTime": "45.900s",
+              "endTime": "46s",
+              "word": "vision"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " v r. Armando El agua",
+          "confidence": 0.5701459646224976,
+          "words": [
+            {
+              "startTime": "51.200s",
+              "endTime": "51.800s",
+              "word": "v"
+            },
+            {
+              "startTime": "51.800s",
+              "endTime": "52.500s",
+              "word": "r."
+            },
+            {
+              "startTime": "52.500s",
+              "endTime": "53s",
+              "word": "Armando"
+            },
+            {
+              "startTime": "53s",
+              "endTime": "53.400s",
+              "word": "El"
+            },
+            {
+              "startTime": "53.400s",
+              "endTime": "53.800s",
+              "word": "agua"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " yeah she's the one",
+          "confidence": 0.8578773736953735,
+          "words": [
+            {
+              "startTime": "54.900s",
+              "endTime": "57s",
+              "word": "yeah"
+            },
+            {
+              "startTime": "57s",
+              "endTime": "57.300s",
+              "word": "she's"
+            },
+            {
+              "startTime": "57.300s",
+              "endTime": "57.400s",
+              "word": "the"
+            },
+            {
+              "startTime": "57.400s",
+              "endTime": "57.600s",
+              "word": "one"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "alternatives": [
+        {
+          "transcript": " polo polo estas haciendo bien",
+          "confidence": 0.7468182444572449,
+          "words": [
+            {
+              "startTime": "64.500s",
+              "endTime": "65.100s",
+              "word": "polo"
+            },
+            {
+              "startTime": "65.100s",
+              "endTime": "65.700s",
+              "word": "polo"
+            },
+            {
+              "startTime": "65.700s",
+              "endTime": "66.500s",
+              "word": "estas"
+            },
+            {
+              "startTime": "66.500s",
+              "endTime": "66.700s",
+              "word": "haciendo"
+            },
+            {
+              "startTime": "66.700s",
+              "endTime": "67.100s",
+              "word": "bien"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

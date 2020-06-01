@@ -44,7 +44,6 @@ def LoadData(root, current_fold, totallist, batchsize_train, batchsize_eval,d,wo
 def LoadParameter(_structure, _parameterDir):
 
     checkpoint = torch.load(_parameterDir)
-    #pretrained_state_dict = checkpoint['state_dict']
     model_state_dict = _structure.state_dict()
     for key in checkpoint:
         #print(key)

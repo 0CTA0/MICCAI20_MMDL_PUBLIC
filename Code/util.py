@@ -43,12 +43,8 @@ class AverageMeter(object):
         self.avg = self.sum / self.count
 
 def save_checkpoint(state, at_type=''):
-
-    if not os.path.exists('./model'):
-        os.makedirs('./model')
-
     epoch = state['epoch']
-    save_dir = './model/'+at_type+'_' + str(epoch) + '_' + str(round(float(state['prec1']), 4))
+    save_dir = os.curdir+'/Model/'+at_type+'_' + str(epoch) + '_' + str(round(float(state['prec1']), 4))
     torch.save(state, save_dir)
     print(save_dir)
 
