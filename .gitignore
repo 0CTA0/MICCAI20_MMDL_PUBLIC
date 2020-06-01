@@ -3,5 +3,5 @@
 *.wav
 Model/*
 *.png
-*.txt
 *.dat
+*.json

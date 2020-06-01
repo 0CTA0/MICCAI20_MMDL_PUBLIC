@@ -31,6 +31,11 @@ def graph_spectrogram(wav_file,name):
     plt.close()
 
 
+if not os.path.exists(os.curdir+"/Feature/"):
+    os.makedirs(os.curdir+"/Feature/Spectrograms/")
+    os.makedirs(os.curdir+"/Feature/Crop/")
+    os.makedirs(os.curdir+"/Feature/Frames/")
+
 
 #Extract wav-> RawData/Video/* ~ RawData/Audio/*
 for root, dirs, files in os.walk(os.curdir+"/RawData/Video/"):
