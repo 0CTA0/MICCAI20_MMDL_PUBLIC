@@ -2,6 +2,7 @@
 *.jpg
 *.wav
 Model/*
+RawData/*
 *.png
 *.dat
 *.json
