@@ -1,0 +1,9 @@
+*.MOV
+*.jpg
+*.wav
+*.png
+*.dat
+*.json
+*.csv
+*.avi
+Model/*
