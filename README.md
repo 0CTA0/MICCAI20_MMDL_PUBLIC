@@ -4,3 +4,6 @@
 * [x] Finish the driver code
 * Repo page descriptions
 * Reference others' repos
+  * pyECO
+  * AudioNet
+  * Emotion-FAN
