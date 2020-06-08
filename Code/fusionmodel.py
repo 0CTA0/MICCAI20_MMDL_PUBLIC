@@ -219,7 +219,6 @@ class DummyLayer(nn.Module):
         return x
 
 def ResNet34(pretrained=False, **kwargs):
-    # Constructs base a ResNet-18 model.
     model = ResNet_Builder(BasicBlock, [3, 4, 6, 3], **kwargs)
     return model
 
