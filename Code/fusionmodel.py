@@ -1,6 +1,5 @@
 import torch.nn as nn
 import math
-import torch.utils.model_zoo as model_zoo
 import torch.nn.functional as F
 import torch
 import numpy as np
@@ -52,13 +51,12 @@ class BasicBlock(nn.Module):
         return out
 
 
-###''' self-attention; relation-attention '''
 
-class ResNet_AT(nn.Module):
+class ResNet_Builder(nn.Module):
     def __init__(self, block, layers, num_classes=2, end2end=True):
         self.inplanes = 64
         self.end2end = end2end
-        super(ResNet_AT, self).__init__()
+        super(ResNet_Builder, self).__init__()
         self.conv0 = nn.Conv2d(3, 3, kernel_size=3, stride=1, padding=1, bias=True)
         self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3, bias=False)
         self.bn1 = nn.BatchNorm2d(64)
@@ -73,12 +71,10 @@ class ResNet_AT(nn.Module):
         self.dropout2 = nn.Dropout(0.7)
         self.sigmoid = nn.Sigmoid()
 
-        #self.beta = nn.Sequential(nn.Linear(1024*6, 1),
         self.beta = nn.Sequential(nn.Linear(512*6, 1),
                                   nn.Sigmoid())
         self.pred_fc2 = nn.Sequential(nn.Linear(512*6, 1),
                                   nn.Sigmoid())
-        # self.pred_fc2 = nn.Sigmoid()
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
@@ -188,8 +184,6 @@ class LSTMClassifier(nn.Module):
         D = args.embed_dim
         C = args.class_num
         Ci = 1
-        # Co = args.kernel_num
-        # Ks = args.kernel_sizes
         hidden_dim = 256
         n_layers = 1
         output_dim = 2
@@ -217,27 +211,24 @@ class LSTMClassifier(nn.Module):
         embeds = self.embedding(batch.to(dtype=torch.int64, device='cuda'))
         packed_input = pack_padded_sequence(embeds, lengths,batch_first=True)
         outputs, (ht, ct) = self.lstm(packed_input, self.hidden)
-        # ht is the last hidden state of the sequences
         output = self.dropout_layer(ht[-1])
-
         return output
 
 class DummyLayer(nn.Module):
     def forward(self, x):
         return x
 
-def ResNetClassifier(pretrained=False, **kwargs):
-    # Constructs base a ResNet-34 model.
-    model = ResNet_AT(BasicBlock, [3, 4, 6, 3], **kwargs)
+def ResNet34(pretrained=False, **kwargs):
+    # Constructs base a ResNet-18 model.
+    model = ResNet_Builder(BasicBlock, [3, 4, 6, 3], **kwargs)
     return model
 
 
 class fusion(nn.Module):
     def __init__(self, args,pretrained=False, **kwargs):
         super(fusion, self).__init__()
-        self.lstm = ResNetClassifier(args)
-        self.resnet = resnet()
-        # self.resnet.pred_fc2 = DummyLayer()
+        self.lstm = LSTMClassifier(args)
+        self.resnet = None
         self.outlayer = nn.Linear(
             in_features=RESNET_FEATURE+self.lstm.hidden_dim, out_features=2)
         self.softmax = nn.Sigmoid()

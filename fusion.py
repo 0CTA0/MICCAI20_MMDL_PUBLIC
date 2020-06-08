@@ -98,9 +98,9 @@ def main():
         args.embed_dim = 512
         args.class_num = 1
         model = fusionmodel.fusion(args)
-        _structure = fusionmodel.resnet18_AT()
-        _parameterDir = os.curdir+'/Model/resnet34-333f7ec4.pth'
-        model.resnet = fusionload.LoadParameter(_structure, _parameterDir)
+        ResNet_structure = fusionmodel.ResNet34()
+        ResNet_parameterDir = os.curdir+'/Model/resnet34-333f7ec4.pth'
+        model.resnet = fusionload.LoadParameter(ResNet_structure, ResNet_parameterDir)
         wi = torch.ones(2)
         # wi[1] = 0.45
         model.cuda()
@@ -163,9 +163,9 @@ def train(train_loader, model, criterion, optimizer, epoch):
         loss0 = criterion(pred_score[1:23],target_var[1:23])
         loss0 = loss0.sum()
         loss = (loss0 - tmploss).abs()
-        if epoch >3 and torch.equal(pred_score,pred22):
+        if epoch >3 and torch.equal(p1,p2):
             loss = loss +0.2
-        if epoch>3 and torch.equal(pred22,pred33):
+        if epoch>3 and torch.equal(p2,p3):
             loss = loss +0.2
 
         output_store_fc.append(pred_score)#16,2
