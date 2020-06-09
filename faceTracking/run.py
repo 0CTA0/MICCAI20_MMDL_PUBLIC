@@ -183,7 +183,7 @@ if __name__ == '__main__':
     a.add_argument("--Videopath","-v")
     args = vars(a.parse_args())
     file_path = "../RawData/Video/"+args["Videopath"]+".MOV"
-    print("Initializing Face Segmentation...")
+    # print("Initializing Face Segmentation...")
     fvs = FileVideoStream(file_path).start()
     img_transform = transforms.Compose([
     transforms.Resize((256,256)),
@@ -271,7 +271,7 @@ if __name__ == '__main__':
         if not len(faces) or faces[0][0] <0:
             detected = False
             continue
-        print("hot start; ", faces, type(faces), "size: ", np.array(faces).size)
+        # print("hot start; ", faces, type(faces), "size: ", np.array(faces).size)
         initbox = faces[0]
         tracker.init(frame,faces[0])
 
