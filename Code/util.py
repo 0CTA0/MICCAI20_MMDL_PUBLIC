@@ -44,7 +44,7 @@ class AverageMeter(object):
 
 def save_checkpoint(state, at_type=''):
     epoch = state['epoch']
-    save_dir = os.curdir+'/Model/'+at_type+'_' + str(epoch) + '_' + str(round(float(state['prec1']), 4))
+    save_dir = os.curdir+'/Checkpoints/'+at_type+'_' + str(epoch) + '_' + str(round(float(state['prec1']), 4))
     torch.save(state, save_dir)
     print(save_dir)
 
