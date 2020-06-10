@@ -94,7 +94,7 @@ python fusion.py
 ```
 So that the training will start with 5 Fold Cross-Validation.
 
-### Reference others' repos
-  * pyECO
-  * AudioNet
-  * Emotion-FAN
+### References
+  * pyECO (https://github.com/StrangerZhang/pyECO): We adopted the ECO tracker for face tracking
+  * AudioNet (https://github.com/iamvishnuks/AudioNet): The generation of spectrograms takes reference from this repo
+  * Emotion-FAN (https://github.com/Open-Debin/Emotion-FAN): We consider the training pipeline of the Emotion recognition work is helpful for our objective
