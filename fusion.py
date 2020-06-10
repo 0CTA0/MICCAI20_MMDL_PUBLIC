@@ -25,7 +25,7 @@ device="cuda"
 parser = argparse.ArgumentParser(description='PyTorch CelebA Training')
 parser.add_argument('--epochs', default=15, type=int, metavar='N',
                     help='number of total epochs to run')
-parser.add_argument('--lr', '--learning-rate', default=5e-4, type=float,
+parser.add_argument('--lr', '--learning-rate', default=2e-4, type=float,
                     metavar='LR', help='initial learning rate')
 parser.add_argument('--momentum', default=0.8, type=float, metavar='M')
 parser.add_argument('--weight-decay', '--wd', default=1e-5, type=float,
@@ -160,13 +160,12 @@ def train(train_loader, model, criterion, optimizer, epoch):
         ''' model & full_model'''
         p1,p2,p3,pred_score = model(imgvar,textvar,len_x)
         tmploss = (p2-p1).abs().sum()+(p3-p2).abs().sum()
-        loss0 = criterion(pred_score[1:23],target_var[1:23])
-        loss0 = loss0.sum()
-        loss = (loss0 - tmploss).abs()
-        if epoch >3 and torch.equal(p1,p2):
-            loss = loss +0.2
-        if epoch>3 and torch.equal(p2,p3):
-            loss = loss +0.2
+        loss = criterion(pred_score[1:23],target_var[1:23])
+        loss = loss.sum()
+        if epoch>3 and tmploss<4:
+            loss = (loss - 0.5*(4-tmploss).abs()).abs()
+        if epoch>5 and tmploss>4:
+            loss = loss + 0.5*(4-tmploss).abs()
 
         output_store_fc.append(pred_score)#16,2
         target_store.append(target)#16,1
